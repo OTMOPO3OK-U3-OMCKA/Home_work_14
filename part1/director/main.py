@@ -4,10 +4,21 @@ import sqlite3
 def main():
     con = sqlite3.connect("../netflix.db")
     cur = con.cursor()
-    sqlite_query = "ЗДЕСЬ ДОЛЖЕН БЫТЬ ВАШ ЗАПРОС"
+    sqlite_query = """
+    SELECT director
+    FROM netflix
+    WHERE director != ''
+    """
     cur.execute(sqlite_query)
     # здесь должно быть формирование и вывод списка
-    # print(cur.fetchall())
+    hh =[]
+    for i in cur.fetchall():
+        gg = i[0].split(', ')
+        hh = hh + (gg)
+
+    for i in set(hh):
+        print(f"* {i}")
+
     con.close()
 
 
